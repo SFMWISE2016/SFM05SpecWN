@@ -1,0 +1,16 @@
+
+Name of Quantlet: the performance of delta hedge
+
+Published in: statistics of financial markets
+
+Description: shows statistics on the performance of delta hedging obtained from one million random stock price paths in our example. 
+
+Keywords: delta hedge, R
+
+Author: Jurgen Franke, Wolfgang K.hardle., Christian M. Hafner
+
+Submitted:  July 17th 2016 by Yang CHEN
+
+
+
+
