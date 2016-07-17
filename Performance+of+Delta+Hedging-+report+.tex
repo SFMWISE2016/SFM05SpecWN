@@ -1,0 +1,262 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[round]{natbib} 
+\bibliographystyle{plainnat} 
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{float}
+\usepackage{indentfirst} 
+
+\begin{document}
+\title{\bfseries Performance of Delta Hedging}
+\author{Group 5 \\   \small (Linfeng Chen , Yang Chen , Lu Lyu , Liang Hu)}
+\date{\today}
+
+%------------------------------------------------------------------------
+\maketitle 
+
+
+\section*{Delta Hedging}
+\setlength{\parindent}{1 em}
+Delta denoted as $ \Delta $, is defined as the rate of change of the option price with respect to the price of the underlying asset price.
+\[\Delta= \frac{\theta{C}}{\theta{S}} \]
+where C is the price of an option, S is the underlying asset price.
+
+An investor who has sold call options to buy M shares of a stock. Then the position of underlying assets could be hedged by buying $ M*\Delta $ shares. The gain (loss) on the underlying stock position would then tend to offset the loss (gain) on the option position. A position with a delta of zero is referred to as delta neutral.
+
+In Black-Scholes-Merton model, the price of European call option without divident can be expressed as:
+\[ C= S*N(d_{1})-e^{-r*\tau} *K*N(d_{2})\]
+where  $ d_{1}=\frac{\ln \frac{S}{K} + r*\tau+ \sigma^2 * \tau}{\sigma*\sqrt{ \tau}} $, $ d_{2}=\frac{\ln \frac{S}{K} + r*\tau - \sigma^2 * \tau}{\sigma*\sqrt{ \tau}} $, $N()$ 
+is the cumulative distribution function for a standard normal distribution. And S, K, r, $\sigma$, $\tau$ denote the current stock price, strike price of option, the interest rate, the stock volatility, and the time to expiration of option, respectively.
+
+Thus, the delta of a European call option on a non-dividend-paying stock can be expressed as:
+\[ \Delta_{c}=N(d_{1}) \]
+
+This formula gives the delta of a long position in one call option. The delta of a short position in one call option is $−N(d_{1})$. Using delta hedging for a short position in a European call option involves maintaining a long position of $N(d_{1})$ for each option sold. Similarly, using delta hedging for a long position in a European call option involves maintaining a short position of $N(d_{1})$ shares for each option purchased.
+Derived in the same way, the delta of a European put option on a non-dividend-paying stock can be expressed as: $ \Delta_{c}=N(d_{1})-1$. We focus on the $\Delta$ of call option and performance of delta hedging without losing generality. 
+
+
+\section*{Performance Measure}
+
+We assume that 100,000 call options are sold. The hedge is assumed to be adjusted or rebalanced weekly. Simulation parameters are showed as Table 1.
+\begin{table}[!htbp]
+\centering
+\caption{\bfseries   Simulation parameters}
+\begin{tabular}{|l|l|}
+\hline
+NAME                              & VALUE \\
+\hline
+Current time t                    & 6 weeks \\
+\hline
+Maturity T                        & 26 weeks \\
+\hline
+Time to maturity $\tau$           & 20 weeks=0.3846 \\
+\hline
+Continuous annual interest rate r & 0.05 \\
+\hline
+Annualized stock volatility       & 0.20 \\
+\hline
+Current stock price $S_{t}$       & 98 \\
+\hline
+Exercise price K                  & 100 \\
+\hline
+\end{tabular}
+\end{table}
+
+%\restylefloat{table}
+\begin{table}[!htbp]
+\centering
+\caption{\bfseries  Simulation Results}
+\begin{tabular}{c c c c c}
+\hline
+\textbf{Week} & \textbf{Stock Price} & \textbf{Delta}  & \textbf{Purchased Shares} & \textbf{Cumulative cost}\\
+\hline
+0	  & 98.00 	  & 0.522 	  & 52,160.47 	  & 5,111,726.00  \\
+1	  & 95.90 	  & 0.446 	  & -7,524.66 	  & 4,390,124.00  \\
+2	  & 99.64 	  & 0.570 	  & 12,316.13 	  & 5,617,286.00  \\
+3	  & 100.36    & 0.592 	  & 2,210.97 	  & 5,839,184.00  \\
+4	  & 102.31 	  & 0.656 	  & 6,390.28 	  & 6,492,996.00  \\
+5	  & 104.35 	  & 0.720 	  & 6,488.05 	  & 7,170,001.00  \\
+6	  & 106.23 	  & 0.778 	  & 5,723.04 	  & 7,777,976.00  \\
+7	  & 106.74    &	0.796 	  & 1,843.13 	  & 7,974,720.00  \\
+8	  & 105.89 	  & 0.777 	  & -1,858.75 	  & 7,777,899.00  \\
+9	  & 102.14 	  & 0.652 	  & -12,552.01 	  & 6,495,899.00  \\
+10	  & 98.59 	  & 0.497 	  & -15,513.79 	  & 4,966,331.00  \\
+11	  & 96.43 	  & 0.385 	  & -11,134.85 	  & 3,892,582.00  \\
+12	  & 100.26 	  & 0.567 	  & 18,198.86 	  & 5,717,135.00  \\
+13	  & 100.40 	  & 0.573 	  & 528.69 	      & 5,770,217.00  \\
+14	  & 102.75    &	0.698 	  & 12,518.89 	  & 7,056,558.00  \\
+15	  & 104.27 	  & 0.783 	  & 8,508.04 	  & 7,943,674.00  \\
+16	  & 103.90 	  & 0.784 	  & 134.12 	      & 7,957,610.00  \\
+17	  & 106.65 	  & 0.923 	  & 13,841.30 	  & 9,433,765.00  \\
+18	  & 109.67 	  & 0.992 	  & 6,950.34 	  & 10,196,009.00  \\
+19	  & 111.39 	  & 1.000 	  & 767.65 	      & 10,281,519.00  \\
+20	  & 111.47 	  & 1.000 	  & 4.10 	      & 10,281,976.00  \\
+\hline
+\end{tabular}
+\end{table}
+
+From table 2, we can see that the initial value of delta for one unit call option is calculated as $ N(d_{1}))=0.522$ . This means that the delta of the option position is initially -52,160.47. As soon as the option is written, \$5,111,726.00 must be borrowed to buy 52,160.47 shares at a price of \$98 to create a delta-neutral position. Toward the end of the life of the option, it becomes apparent that the option will be exercised and the delta of the option approaches 1.0. By Week 20, therefore, the hedger has a fully covered position. The hedger receives \$10 million for the stock held, so that the total cost of writing the option and hedging it is \$281,976.00 .
+
+
+\begin{table}[!htbp]
+\centering
+\caption{\bfseries Simulation Results}
+\begin{tabular}{c c c c c }
+\hline
+\textbf{Time(weeks)} & \textbf{Stock Price} & \textbf{Delta}  & \textbf{Purchased Shares} & \textbf{Cumulative cost}\\
+\hline
+0	 & 98.00 	 & 0.522 	 & 52,160.47 	 & 5,111,725.68   \\
+1	 & 100.07 	 & 0.586 	 & 6,452.37 	 & 5,757,433.60   \\
+2	 & 101.60 	 & 0.633 	 & 4,729.30 	 & 6,237,936.50   \\
+3	 & 108.37 	 & 0.817 	 & 18,323.77 	 & 8,223,609.19   \\
+4	 & 109.93 	 & 0.853 	 & 3,584.25 	 & 8,617,612.69   \\
+5	 & 113.37 	 & 0.912 	 & 5,996.16 	 & 9,297,388.68   \\
+6	 & 115.57 	 & 0.942 	 & 3,002.69 	 & 9,644,409.67   \\
+7	 & 116.75 	 & 0.958 	 & 1,513.35 	 & 9,821,094.63   \\
+8	 & 117.57 	 & 0.968 	 & 1,041.13 	 & 9,943,498.03   \\
+9	 & 117.49 	 & 0.972 	 & 408.59 	     & 9,991,501.57   \\
+10	 & 112.16 	 & 0.928 	 & -4,404.26 	 & 9,497,532.51   \\
+11	 & 113.58 	 & 0.953 	 & 2,505.71 	 & 9,782,131.75   \\
+12	 & 111.63 	 & 0.938 	 & -1,494.97 	 & 9,615,248.90   \\
+13	 & 106.01 	 & 0.822 	 & -11,609.88 	 & 8,384,523.88   \\
+14	 & 104.25 	 & 0.768 	 & -5,422.68 	 & 7,819,198.71   \\
+15	 & 102.40 	 & 0.689 	 & -7,931.93 	 & 7,006,930.19   \\
+16	 & 103.75 	 & 0.776 	 & 8,793.25 	 & 7,919,209.65   \\
+17	 & 102.13 	 & 0.699 	 & -7,704.38 	 & 7,132,362.93   \\
+18	 & 99.23 	 & 0.449 	 & -25,033.39 	 & 4,648,252.85   \\
+19	 & 100.05 	 & 0.526 	 & 7,724.82 	 & 5,421,110.64   \\
+20	 & 99.64 	 & 0.000 	 & -52,634.37 	 & 176,701.20     \\
+\hline
+\end{tabular}
+\end{table}
+
+Table 3 illustrates an alternative sequence of events such that the option closes out of the money. As it becomes clear that the option will not be exercised, delta approaches zero. By Week 20 the hedger has a naked position and has incurred costs totaling \$176,701.20.
+
+\begin{table}[!htbp]
+\centering
+\caption{\bfseries  Performance of Delta Hedging}
+\begin{tabular}{l c c c c c c}
+\hline
+\bfseries{Time between hedge rebalancing(weeks)} & 5 & 4  & 2 & 1 &  1/2 & 1/4 \\
+\hline
+\bfseries{Performance measure}	 & 0.42	 & 0.38	 & 0.28	 & 0.21	 & 0.16	 & 0.13 \\
+\hline
+\end{tabular}
+\end{table}
+
+Table 4 shows statistics on the performance of delta hedging obtained from one million random stock price paths in our example. The performance measure is the ratio of the standard deviation of the cost of hedging the option to the Black–Scholes–Merton price of the option. It is clear that delta hedging is a great improvement over a stop-loss strategy. Unlike a stop-loss strategy, the performance of a delta-hedging strategy gets steadily better as the hedge is monitored more frequently
+
+
+
+
+\section*{Appendix}
+
+The R code of simulation of Delta hedging is as follow:
+
+rm(list $=$ ls(all $=$ TRUE))
+
+graphics.off()
+
+\# The function to calculate the theoretical option price
+
+bscall $=$ function(S, sig, maturity, K, r,t0) \{
+
+\# maturity $=$ mat
+
+\# S $=$ S0
+
+tau $=$ maturity $-$ t0
+
+$d2 = (log(S/K) + (r - sig^2/2) * tau)/(sig * sqrt(tau))$
+
+$d1 = d2 + sig * sqrt(tau)$
+
+$call = S * pnorm(d1) - K * exp(-r * tau) * pnorm(d2)$
+
+return(call)
+
+\}
+
+\# Calculate the cost to hedging a call option
+
+costcal $=$ function(S0, sig, maturity, K, r, n, t0) \{
+
+\# maturity $=$ mat
+
+$ dt = (maturity - t0)/n$  \# period between steps n
+
+t $=$ seq(t0, maturity, l $=$ n) \# maturity $- t0$ divided in n intervals
+
+$tau = maturity - t$  \# time to maturity
+
+\# Simulate the stock price path
+
+$Wt = c(0, sqrt(dt) * cumsum(rnorm(n - 1, 0, 1)))$
+
+$S = S0 * exp((r - 0.5 * sig^2) * t + sig * Wt)$
+
+\# Compute delta and the associated hedging costs
+
+$y = (log(S/K) + (r - sig^2/2) * tau)/(sig * sqrt(tau))$
+
+$delta = pnorm(y + sig * sqrt(tau))$
+$hedge.costs = c(delta[1] * S[1], (delta[2:n] - delta[1:(n - 1)]) * S[2:n])$
+
+cum.hedge.costs $=$ cumsum(hedge.costs)
+
+\# Result
+
+cost $=$ cum.hedge.costs[n]
+
+ST $=$ S[n]
+
+$result = ifelse(ST>K, cost-K, cost)$
+
+return(result)
+
+\}
+
+\# Declare stock price variables
+
+N $=$ c(4,5,10,20,40,80) \# periods (steps)
+
+S0 $=$ 98  \# initial stock price
+
+sig $=$ 0.2  \# volatility (uniform distributed on 0.1 to 0.5)
+
+\# Declare option pricing variables
+
+r $=$ 0.05 \# interest rate (uniform distributed on 0 to 0.1)
+
+K $=$ 100 \# exerise price
+
+$t0 = 6/52  \# current time (1 week = 1/52)$
+
+$mat = 26/52$ \# maturity
+
+$performance = sapply(1:length(N), function(j) \{$
+
+n $=$ N[j]
+
+$ costsim=sapply(1:100000,function(i) \{ $
+
+$cost = costcal(S0 = S0, sig = sig, maturity = mat, K = K, r = r, n = n, t0 = t0)$
+
+return(cost)
+
+\}
+
+$ call = bscall (S = S0, sig = sig, maturity = mat, K = K, r = r, t0 = t0)$
+
+$L = sd(costsim) / call $
+
+return(L)
+
+\}
+
+
+
+\end{document}
+

@@ -1,0 +1,218 @@
+%----------------------------------------------------------------------------------------
+% Progect 16 made by group 5
+% Quantlet for Table 15: Performance of Delta Hedging
+% 2016/07
+%----------------------------------------------------------------------------------------
+
+\documentclass[cjk]{beamer}
+\usepackage{CJKutf8}
+\usepackage{graphics}
+\usepackage{amsmath}
+\usetheme{Warsaw}
+\begin{document}
+\begin{CJK*}{UTF8}{gbsn}
+%%------------------------------------------
+\title{Performance of Delta Hedging}
+\author[Group 5]{ Linfeng Chen \\ Yang Chen\\ Lu Lyu \\ Liang Hu\\}
+\institute{{\large WISE in Xiamen University}}
+
+%%------------------------------------------
+\begin{frame}
+\titlepage
+\end{frame}
+
+%%------------------------------------------------
+\begin{frame}
+\frametitle{Delta}
+\begin{itemize}
+\item Delta() is defined as the rate of change of the option price with respect of price of the underlying asset price. $$
+\Delta= \frac{\theta{C}}{\theta{S}}
+$$
+where C is the option price, S is the price of underlying asset.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Delta in Black-Scholes-Merton model}
+\begin{itemize}
+\item For BSM model, the delta of European call option without dividend is:
+$$ \delta_{c}=N(d_{1}) $$
+\item For BSM model, the delta of European call option without dividend is:
+$$ \delta_{p}=N(d_{1})-1 $$
+where  $ d_{1}=\frac{\ln \frac{S}{K} + r*\tau+ \sigma^2 * \tau}{\sigma*\sqrt{ \tau}} $, $N()$ 
+is the cumulative distribution function for a standard normal distribution. And S, K, r, $\sigma$, $\tau$ denote the current stock price, strike price of option, the interest rate, the stock volatility, and the time to expiration of option, respectively.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Delta Hedging Strategy}
+\begin{itemize}
+\item An investor who has sold call options to buy M shares of a stock. Then the position of underlying assets could be hedged by buying $ M*\Delta $ shares. 
+\item The gain (loss) on the underlying stock position would then tend to offset the loss (gain) on the option position. 
+\item A position with a delta of zero is referred to as delta neutral.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Dynamic Aspects of Delta Hedging}
+\begin{itemize}
+\item We assume where 100,000 call options are sold. The hedge is assumed to be adjusted or rebalanced weekly. Simulation parameters are showed as table 1.
+\end{itemize}
+
+
+\caption{\bfseries \color{blue} Table 1 : Simulation parameters}
+\begin{tabular}{|l|l|}
+\toprule
+\hline
+\textbf{NAME} & \textbf{VALUE} \\
+\midrule
+\hline
+Current time t                    & 6 weeks \\
+\hline
+Maturity T                        & 26 weeks \\
+\hline
+Time to maturity $\tau$           & 20 weeks=0.3846 \\
+\hline
+Continuous annual interest rate r & 0.05 \\
+\hline
+Annualized stock volatility       & 0.20 \\
+\hline
+Current stock price $S_{t}$       & 98 \\
+\hline
+Exercise price K                  & 100 \\
+\hline
+\bottomrule
+\end{tabular}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Dynamic Aspects of Delta Hedging}
+\begin{itemize}
+\item The simulation result of dynamic delta hedging is showed as table 2. Option closes in the money and cost of hedging is 281,976.00 dollars.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Dynamic Aspects of Delta Hedging}
+\caption{\bfseries \color{blue} Table 2 : Simulation Results}
+\scriptsize
+\begin{tabular}{c c c c c}
+\toprule
+\hline
+\textbf{Week} & \textbf{Stock Price} & \textbf{Delta}  & \textbf{Purchased Shares} & \textbf{Cumulative cost}\\
+\midrule
+\hline
+0	  & 98.00 	  & 0.522 	  & 52,160.47 	  & 5,111,726.00  \\
+1	  & 95.90 	  & 0.446 	  & -7,524.66 	  & 4,390,124.00  \\
+2	  & 99.64 	  & 0.570 	  & 12,316.13 	  & 5,617,286.00  \\
+3	  & 100.36    & 0.592 	  & 2,210.97 	  & 5,839,184.00  \\
+4	  & 102.31 	  & 0.656 	  & 6,390.28 	  & 6,492,996.00  \\
+5	  & 104.35 	  & 0.720 	  & 6,488.05 	  & 7,170,001.00  \\
+6	  & 106.23 	  & 0.778 	  & 5,723.04 	  & 7,777,976.00  \\
+7	  & 106.74    &	0.796 	  & 1,843.13 	  & 7,974,720.00  \\
+8	  & 105.89 	  & 0.777 	  & -1,858.75 	  & 7,777,899.00  \\
+9	  & 102.14 	  & 0.652 	  & -12,552.01 	  & 6,495,899.00  \\
+10	  & 98.59 	  & 0.497 	  & -15,513.79 	  & 4,966,331.00  \\
+11	  & 96.43 	  & 0.385 	  & -11,134.85 	  & 3,892,582.00  \\
+12	  & 100.26 	  & 0.567 	  & 18,198.86 	  & 5,717,135.00  \\
+13	  & 100.40 	  & 0.573 	  & 528.69 	      & 5,770,217.00  \\
+14	  & 102.75    &	0.698 	  & 12,518.89 	  & 7,056,558.00  \\
+15	  & 104.27 	  & 0.783 	  & 8,508.04 	  & 7,943,674.00  \\
+16	  & 103.90 	  & 0.784 	  & 134.12 	      & 7,957,610.00  \\
+17	  & 106.65 	  & 0.923 	  & 13,841.30 	  & 9,433,765.00  \\
+18	  & 109.67 	  & 0.992 	  & 6,950.34 	  & 10,196,009.00  \\
+19	  & 111.39 	  & 1.000 	  & 767.65 	      & 10,281,519.00  \\
+20	  & 111.47 	  & 1.000 	  & 4.10 	      & 10,281,976.00  \\
+\hline
+\bottomrule
+\end{tabular}
+
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Dynamic Aspects of Delta Hedging}
+\begin{itemize}
+\item Table 3 illustrates an alternative sequence of events such that the option closes out of the money. As it becomes clear that the option will not be exercised, delta approaches zero. In Week 20, the investor has a naked position and has suffer from total costs 176,701.20 dollars.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Performance of delta hedging}
+\caption{\bfseries \color{blue} Table 3 : Simulation Results}
+\scriptsize
+\begin{tabular}{c c c c c }
+\toprule
+\hline
+\textbf{Time(weeks)} & \textbf{Stock Price} & \textbf{Delta}  & \textbf{Purchased Shares} & \textbf{Cumulative cost}\\
+\midrule
+\hline
+0	 & 98.00 	 & 0.522 	 & 52,160.47 	 & 5,111,725.68   \\
+1	 & 100.07 	 & 0.586 	 & 6,452.37 	 & 5,757,433.60   \\
+2	 & 101.60 	 & 0.633 	 & 4,729.30 	 & 6,237,936.50   \\
+3	 & 108.37 	 & 0.817 	 & 18,323.77 	 & 8,223,609.19   \\
+4	 & 109.93 	 & 0.853 	 & 3,584.25 	 & 8,617,612.69   \\
+5	 & 113.37 	 & 0.912 	 & 5,996.16 	 & 9,297,388.68   \\
+6	 & 115.57 	 & 0.942 	 & 3,002.69 	 & 9,644,409.67   \\
+7	 & 116.75 	 & 0.958 	 & 1,513.35 	 & 9,821,094.63   \\
+8	 & 117.57 	 & 0.968 	 & 1,041.13 	 & 9,943,498.03   \\
+9	 & 117.49 	 & 0.972 	 & 408.59 	     & 9,991,501.57   \\
+10	 & 112.16 	 & 0.928 	 & -4,404.26 	 & 9,497,532.51   \\
+11	 & 113.58 	 & 0.953 	 & 2,505.71 	 & 9,782,131.75   \\
+12	 & 111.63 	 & 0.938 	 & -1,494.97 	 & 9,615,248.90   \\
+13	 & 106.01 	 & 0.822 	 & -11,609.88 	 & 8,384,523.88   \\
+14	 & 104.25 	 & 0.768 	 & -5,422.68 	 & 7,819,198.71   \\
+15	 & 102.40 	 & 0.689 	 & -7,931.93 	 & 7,006,930.19   \\
+16	 & 103.75 	 & 0.776 	 & 8,793.25 	 & 7,919,209.65   \\
+17	 & 102.13 	 & 0.699 	 & -7,704.38 	 & 7,132,362.93   \\
+18	 & 99.23 	 & 0.449 	 & -25,033.39 	 & 4,648,252.85   \\
+19	 & 100.05 	 & 0.526 	 & 7,724.82 	 & 5,421,110.64   \\
+20	 & 99.64 	 & 0.000 	 & -52,634.37 	 & 176,701.20     \\
+\hline
+\bottomrule
+\end{tabular}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Performance of delta hedging}
+\begin{itemize}
+\item For BSM model, the price of this call option is 4.80 dollars.
+\item The performance measure is the ratio of the standard deviation of the cost of hedging the option to the Black–Scholes–Merton price of the option. 
+Table 4 shows statistics on the performance of delta hedging obtained from one million random stock price paths in our example.
+\end{itemize}
+
+\doublespacing
+\caption{\bfseries \color{blue} Table 4 : Performance of Delta Hedging}
+\scriptsize
+\begin{tabular}{l c c c c c c}
+\hline
+\bfseries{Time between hedge rebalancing(weeks)} & 5 & 4  & 2 & 1 &  1/2 & 1/4 \\
+\hline
+\bfseries{Performance measure}	 & 0.42	 & 0.38	 & 0.28	 & 0.21	 & 0.16	 & 0.13 \\
+\hline
+\end{tabular}
+
+\begin{itemize}
+\item The limit yields the riskless BS portfolio strategy as $ \delta{t} \rightarrow 0 $.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Performance of delta hedging}
+\Huge{\centerline{THANKS !}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\end{document} 
